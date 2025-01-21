@@ -1,0 +1,51 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  detailed:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: detailed
+    stream: ext://sys.stdout
+
+  file_users:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: "./logs/users.log"
+
+  file_courses:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: "./logs/courses.log"
+
+  file_user_courses:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: "./logs/user_courses.log"
+
+loggers:
+  users:
+    level: DEBUG
+    handlers: [console, file_users]
+    propagate: false
+  
+  courses:
+    level: DEBUG
+    handlers: [console, file_courses]
+    propagate: false
+
+  user_courses:
+    level: DEBUG
+    handlers: [console, file_user_courses]
+    propagate: false
+
+root:
+  level: WARNING
+  handlers: [console]
