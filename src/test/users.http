@@ -5,12 +5,13 @@ Content-Type: application/json
 {
   "name": "João da Silva",
   "cpf": "12345678900",
+  "phone_number": "(99) 32312-3212",
   "email": "joao.silva@example.com",
   "password": "senha123"
 }
 
 ### Atualizar usuário
-PUT http://localhost:8000/users/1
+PUT http://localhost:8000/users/3
 Content-Type: application/json
 
 {
@@ -21,7 +22,7 @@ Content-Type: application/json
 }
 
 ### Deletar usuário
-DELETE http://localhost:8000/users/1
+DELETE http://localhost:8000/users/2
 
 ### Buscar usuário por ID
 GET http://localhost:8000/users/1

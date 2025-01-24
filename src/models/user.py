@@ -12,6 +12,7 @@ class User(SQLModel, table=True):
     cpf: str
     email: str
     password: str
+    phone_number: str
     sold_courses: List["UserCourses"] = Relationship(
         sa_relationship_kwargs={
             "cascade": "all, delete-orphan",
