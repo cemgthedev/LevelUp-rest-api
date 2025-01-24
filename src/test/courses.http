@@ -1,0 +1,32 @@
+### Criar curso
+POST http://localhost:8000/courses
+Content-Type: application/json
+
+{
+  "title": "Curso de Python Avançado",
+  "description": "Aprenda conceitos avançados de Python.",
+  "workload": 40,
+  "price": 299.99,
+  "url": "https://exemplo.com/curso-python-avancado"
+}
+
+### Atualizar curso
+PUT http://localhost:8000/courses/1
+Content-Type: application/json
+
+{
+  "title": "Curso de Python Completo",
+  "description": "Curso atualizado com todos os conceitos básicos e avançados.",
+  "workload": 50,
+  "price": 399.99,
+  "url": "https://exemplo.com/curso-python-completo"
+}
+
+### Deletar curso
+DELETE http://localhost:8000/courses/1
+
+### Buscar curso por ID
+GET http://localhost:8000/courses/1
+
+### Listar cursos com filtros
+GET http://localhost:8000/courses?page=1&limit=5&title=Python&min_price=200&max_price=400&min_workload=20&max_workload=60

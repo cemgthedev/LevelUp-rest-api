@@ -1,0 +1,33 @@
+### Criar usuário
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+  "name": "João da Silva",
+  "cpf": "12345678900",
+  "email": "joao.silva@example.com",
+  "password": "senha123"
+}
+
+### Atualizar usuário
+PUT http://localhost:8000/users/1
+Content-Type: application/json
+
+{
+  "name": "João da Silva Atualizado",
+  "cpf": "12345678900",
+  "email": "joao.silva.updated@example.com",
+  "password": "novaSenha123"
+}
+
+### Deletar usuário
+DELETE http://localhost:8000/users/1
+
+### Buscar usuário por ID
+GET http://localhost:8000/users/1
+
+### Listar usuários com filtros
+GET http://localhost:8000/users?page=1&limit=5&name=João
+
+### Listar usuários com filtros
+GET http://localhost:8000/users?page=1&limit=5&email=joao.silva@example.com&password=senha123
