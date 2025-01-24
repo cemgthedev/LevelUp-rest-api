@@ -33,7 +33,7 @@ async def update_course(id: int, updated_course: Course, db: Session = Depends(g
         course = db.exec(select(Course).where(Course.id == id)).first()
         if course is None:
             logger.warning(f"Curso com ID {id} não encontrado")
-            return {"error": "User not found"}
+            raise HTTPException(status_code=404, detail="Course not found")
         course.title = updated_course.title
         course.description = updated_course.description
         course.workload = updated_course.workload
@@ -57,7 +57,7 @@ async def delete_course(id: int, db: Session = Depends(get_db)):
         course = db.exec(select(Course).where(Course.id == id)).first()
         if course is None:
             logger.warning(f"Curso com ID {id} não encontrado")
-            return {"error": "Course not found"}
+            raise HTTPException(status_code=404, detail="Course not found")
         
         db.delete(course)
         db.commit()
@@ -76,7 +76,7 @@ async def get_course(id: int, db: Session = Depends(get_db)):
         course = db.exec(select(Course).where(Course.id == id)).first()
         if course is None:
             logger.warning(f"Curso com ID {id} não encontrado")
-            return {"error": "Course not found"}
+            raise HTTPException(status_code=404, detail="Course not found")
         
         logger.info(f"Curso encontrado: {course}")
         return {"message": "Course found successfully", "data": course}

@@ -33,7 +33,7 @@ async def update_user(id: int, updated_user: User, db: Session = Depends(get_db)
         user = db.exec(select(User).where(User.id == id)).first()
         if user is None:
             logger.warning(f"Usuário com ID {id} não encontrado")
-            return {"error": "User not found"}
+            raise HTTPException(status_code=404, detail="User not found")
         user.name = updated_user.name
         user.cpf = updated_user.cpf
         user.email = updated_user.email
@@ -56,7 +56,7 @@ async def delete_user(id: int, db: Session = Depends(get_db)):
         user = db.exec(select(User).where(User.id == id)).first()
         if user is None:
             logger.warning(f"Usuário com ID {id} não encontrado")
-            return {"error": "User not found"}
+            raise HTTPException(status_code=404, detail="User not found")
         
         db.delete(user)
         db.commit()
@@ -75,7 +75,7 @@ async def get_user(id: int, db: Session = Depends(get_db)):
         user = db.exec(select(User).where(User.id == id)).first()
         if user is None:
             logger.warning(f"Usuário com ID {id} não encontrado")
-            return {"error": "User not found"}
+            raise HTTPException(status_code=404, detail="User not found")
         
         logger.info(f"Usuário encontrado: {user}")
         return {"message": "User found successfully", "data": user}
@@ -89,12 +89,16 @@ async def get_users(
     page: int = Query(1, ge=1, description="Page number, starting from 1"),
     limit: int = Query(10, ge=1, le=100, description="Number of results per page (max 100)"),
     name: Optional[str] = Query(None, description="Filter by user name"),
+    email: Optional[str] = Query(None, description="Filter by user email"),
+    password: Optional[str] = Query(None, description="Filter by user password"),
 ):
     try:
         logger.info(f"Buscando usuários...")
         filters = []
         if name:
             filters.append(User.name.ilike(f"%{name}%"))
+        if email and password:
+            filters.append(and_(User.email == email, User.password == password))
         
         offset = (page - 1) * limit
         stmt = select(User).where(and_(*filters)).offset(offset).limit(limit) if filters else select(User).offset(offset).limit(limit)
@@ -107,6 +111,7 @@ async def get_users(
             logger.info(f"Usuários encontrados com sucesso!")
         else:
             logger.warning(f"Nenhum usuário encontrado!")
+            raise HTTPException(status_code=404, detail="No users found")
             
         return {
             "message": "Users found successfully",
