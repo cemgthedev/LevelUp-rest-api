@@ -1,0 +1,29 @@
+### Adicionar curso para usuário
+POST http://localhost:8000/user_courses
+Content-Type: application/json
+
+{
+  "buyer_id": 3,
+  "seller_id": 4,
+  "course_id": 2
+}
+
+### Atualizar curso para um usuário
+PUT http://localhost:8000/user_courses/1
+Content-Type: application/json
+
+{
+  "buyer_id": 1,
+  "seller_id": 2,
+  "course_id": 3,
+  "purchased": true
+}
+
+### Deletar um curso de um usuário
+DELETE http://localhost:8000/user_courses/1
+
+### Pegar curso de um usuário pelo ID
+GET http://localhost:8000/user_courses/1
+
+### Listar cursos dos usuários (com paginação)
+GET http://localhost:8000/user_courses?page=1&limit=10

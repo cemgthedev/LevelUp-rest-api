@@ -85,7 +85,7 @@ async def get_course(id: int, db: Session = Depends(get_db)):
     
 # Rota para listar cursos
 @router.get("/courses")
-async def get_users(
+async def get_courses(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1, description="Page number, starting from 1"),
     limit: int = Query(10, ge=1, le=100, description="Number of results per page (max 100)"),

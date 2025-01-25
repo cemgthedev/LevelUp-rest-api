@@ -13,7 +13,7 @@ class UserCourses(SQLModel, table=True):
     buyer_id: int = Field(foreign_key="users.id")  # Foreign Key for User Buyer
     seller_id: int = Field(foreign_key="users.id")  # Foreign Key for User Seller
     course_id: int = Field(foreign_key="courses.id")  # Foreign Key for Course
-    purchased: bool
+    purchased: bool = Field(default=False)
     purchased_at: Optional[datetime]
     created_at: datetime = Field(default_factory=datetime.now)
     buyer: "User" = Relationship(
