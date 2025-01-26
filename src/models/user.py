@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, List, Optional
 
 if TYPE_CHECKING:
     from user_courses import UserCourses
@@ -13,6 +13,7 @@ class User(SQLModel, table=True):
     email: str
     password: str
     phone_number: str
+    address: Optional[str]
     sold_courses: List["UserCourses"] = Relationship(
         sa_relationship_kwargs={
             "cascade": "all, delete-orphan",
