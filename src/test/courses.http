@@ -19,7 +19,8 @@ Content-Type: application/json
   "description": "Curso atualizado com todos os conceitos básicos e avançados.",
   "workload": 50,
   "price": 399.99,
-  "url": "https://exemplo.com/curso-python-completo"
+  "banner_url": "https://exemplo.com/curso-python-completo",
+  "course_url": "https://exemplo.com/curso-python-completo.png"
 }
 
 ### Deletar curso

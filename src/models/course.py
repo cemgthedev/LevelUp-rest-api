@@ -12,7 +12,8 @@ class Course(SQLModel, table=True):
     description: str
     workload: int
     price: float
-    url: str
+    banner_url: str
+    course_url: str
     
     # Relacionamentos
     user_courses: List["UserCourses"] = Relationship(
