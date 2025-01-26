@@ -36,6 +36,9 @@ async def update_user(id: int, updated_user: User, db: Session = Depends(get_db)
             raise HTTPException(status_code=404, detail="User not found")
         user.name = updated_user.name
         user.cpf = updated_user.cpf
+        user.gender = updated_user.gender
+        user.age = updated_user.age
+        user.address = updated_user.address
         user.email = updated_user.email
         user.password = updated_user.password
         

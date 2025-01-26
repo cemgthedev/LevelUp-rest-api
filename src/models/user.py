@@ -12,6 +12,7 @@ class User(SQLModel, table=True):
     cpf: str
     email: str
     password: str
+    age: Optional[int]
     phone_number: str
     address: Optional[str]
     gender: Optional[str]
