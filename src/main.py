@@ -5,8 +5,18 @@ from models import *
 from services.users import router as users_router
 from services.courses import router as courses_router
 from services.user_courses import router as user_courses_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Configuração do CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Origens permitidas
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos os métodos HTTP (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos os headers
+)
 
 @app.get("/")
 def get_db(db: Session = Depends(get_db)):
