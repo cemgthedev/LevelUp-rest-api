@@ -38,7 +38,9 @@ async def update_course(id: int, updated_course: Course, db: Session = Depends(g
         course.description = updated_course.description
         course.workload = updated_course.workload
         course.price = updated_course.price
-        course.url = updated_course.url
+        course.phone_number = updated_course.phone_number
+        course.banner_url = updated_course.banner_url
+        course.course_url = updated_course.course_url
         
         db.commit()
         db.refresh(course)

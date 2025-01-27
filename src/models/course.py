@@ -12,6 +12,7 @@ class Course(SQLModel, table=True):
     description: str
     workload: int
     price: float
+    phone_number: str
     banner_url: str
     course_url: str
     seller_id: int = Field(foreign_key="users.id")
