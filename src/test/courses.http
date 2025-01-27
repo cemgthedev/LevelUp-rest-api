@@ -3,11 +3,13 @@ POST http://localhost:8000/courses
 Content-Type: application/json
 
 {
+  "seller_id": 8,
   "title": "Curso de Python Avançado",
   "description": "Aprenda conceitos avançados de Python.",
   "workload": 40,
   "price": 299.99,
-  "url": "https://exemplo.com/curso-python-avancado"
+  "banner_url": "https://exemplo.com/curso-python-avancado",
+  "course_url": "https://exemplo.com/curso-python-avancado"
 }
 
 ### Atualizar curso

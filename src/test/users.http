@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### Deletar usuário
-DELETE http://localhost:8000/users/2
+DELETE http://localhost:8000/users/6
 
 ### Buscar usuário por ID
 GET http://localhost:8000/users/1

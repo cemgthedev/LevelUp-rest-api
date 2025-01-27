@@ -14,6 +14,7 @@ class Course(SQLModel, table=True):
     price: float
     banner_url: str
     course_url: str
+    seller_id: int = Field(foreign_key="users.id")
     
     # Relacionamentos
     user_courses: List["UserCourses"] = Relationship(
