@@ -89,6 +89,7 @@ async def get_courses(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1, description="Page number, starting from 1"),
     limit: int = Query(10, ge=1, le=100, description="Number of results per page (max 100)"),
+    seller_id: Optional[int] = Query(None, description="Filter by seller ID"),
     title: Optional[str] = Query(None, description="Filter by course title"),
     min_price: Optional[float] = Query(None, description="Filter by minimum price"),
     max_price: Optional[float] = Query(None, description="Filter by maximum price"),
@@ -98,6 +99,8 @@ async def get_courses(
     try:
         logger.info(f"Buscando cursos...")
         filters = []
+        if seller_id:
+            filters.append(Course.seller_id == seller_id)
         if title:
             filters.append(Course.title.ilike(f"%{title}%"))
         if min_price is not None:
